@@ -7,7 +7,7 @@ for reference visit [codingdojo.org](https://codingdojo.org/)
 improve skills like teamwork, communication, code quality, refactoring, and TDD
 
 ## Rules
-- Sensei don't give answers
+- Sensei doesn't give answers
 - All assistants must participate
 - All participants write code
 
