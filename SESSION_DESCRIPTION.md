@@ -11,7 +11,9 @@ This is a fun kata that has the programmer building simple combat rules, as for 
     - Level, starting at 1
     - May be Alive or Dead, starting Alive (Alive may be a true/false)
 
-2. ####
+2. Characters can Deal Damage to Characters.
+  - Damage is subtracted from Health
+  - When damage received exceeds current Health, Health becomes 0 and - the character dies
 3. ####
 
 
