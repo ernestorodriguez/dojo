@@ -53,13 +53,13 @@ describe('', () => {
     expect(anotherCharacter).toHaveProperty('alive', false);
   });
 
-  it("character should be healed", function () {
+  it("character should heal self", function () {
     const character = new Character();
     const anotherCharacter = new Character();
 
     character.damage(anotherCharacter);
-    character.heal(anotherCharacter);
-    character.heal(anotherCharacter);
+    anotherCharacter.heal(anotherCharacter);
+    anotherCharacter.heal(anotherCharacter);
 
     expect(anotherCharacter.health).toEqual(1000);
   });
@@ -67,11 +67,16 @@ describe('', () => {
   it("dead character should not be healed", function () {
     const character = new Character();
     const anotherCharacter = new Character();
+    const hits = 1050 / 50;
 
-    character.damage(anotherCharacter);
-    character.heal(anotherCharacter);
+    // Act
+    for (let i=0 ; i < hits; i++) {
+      character.damage(anotherCharacter);
+    }
+    anotherCharacter.heal(anotherCharacter);
 
-    expect(anotherCharacter.health).toEqual(1000);
+    expect(anotherCharacter.health).toEqual(0);
+    expect(anotherCharacter).toHaveProperty('alive', false);
   });
 
   it("character should not be healed above original health", function () {
@@ -87,5 +92,51 @@ describe('', () => {
 
     expect(anotherCharacter.health).toEqual(0);
     expect(anotherCharacter).toHaveProperty('alive', false);
+  });
+
+  it("character should not damage itself", () => {
+    const character = new Character();
+
+    // Act
+    character.damage(character);
+
+    expect(character.health).toEqual(1000);
+  });
+
+  it("character should not be able to heal another character", () => {
+    const char1 = new Character();
+    const char2 = new Character();
+
+    char1.damage(char2);
+    char1.heal(char2);
+
+    expect(char2.health).toEqual(950);
+  });
+
+  it("target get reduced damage if has 5+ levels than character", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character({level: 6});
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(975);
+    expect(anotherCharacter).toHaveProperty('alive', true);
+  });
+
+
+  it("target get increased damage if has 5+ levels below character", () => {
+    // Arrange 
+    const character = new Character({level: 6});
+    const anotherCharacter = new Character();
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(925);
+    expect(anotherCharacter).toHaveProperty('alive', true);
   });
 });

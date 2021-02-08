@@ -2,8 +2,8 @@ const MAX_HEALTH = 1000;
 const DAMAGE_WEIGHT = 50;
 const HEAL_AMOUNT = 50;
 class Character {
-  constructor () {
-    this.level = 1;
+  constructor ({ level = 1 } = {}) {
+    this.level = level;
     this.alive = true;
     this.health = MAX_HEALTH;
   }
@@ -27,11 +27,25 @@ class Character {
   }
 
   damage (otherCharacter) {
-    otherCharacter.sufferDamage(DAMAGE_WEIGHT);
+    if (otherCharacter === this) {
+      return;
+    }
+    let multy = 1;
+
+    if (otherCharacter.level - this.level >= 5) {
+      multy *= 0.5;
+    }
+    if (this.level - otherCharacter.level >= 5) {
+      multy *= 1.5;
+    }
+    
+    otherCharacter.sufferDamage(DAMAGE_WEIGHT * multy);
   }
 
-  heal (otherCharacter) {
-    otherCharacter.beHealed(HEAL_AMOUNT);
+  heal (thisCharacter) {
+    if (thisCharacter === this) {
+      thisCharacter.beHealed(HEAL_AMOUNT);
+    }
   }
 }
 
