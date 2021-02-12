@@ -26,3 +26,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
   -If the target is 5 or more Levels above the attacker, Damage is reduced by 50%
   -If the target is 5 or more levels below the attacker, Damage is increased by 50%
 
+### THREE
+
+A character can equip a sword and attack with it.
+ - the damage amount should be based on the weapon damage but add any other current modification

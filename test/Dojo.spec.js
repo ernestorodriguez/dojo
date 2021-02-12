@@ -1,5 +1,6 @@
 import Dojo from '../src/Dojo';
 import Character from '../src/Character';
+import Sword from '../src/Sword';
 
 describe('', () => {
   it('should be true', ()=> {
@@ -139,4 +140,31 @@ describe('', () => {
     expect(anotherCharacter.health).toEqual(925);
     expect(anotherCharacter).toHaveProperty('alive', true);
   });
+
+  it("a character can equip a sword", () => {
+    // Arrange 
+    const character = new Character();
+    const sword = new Sword();
+
+    // Act
+    character.equipWeapon(sword);
+
+    // Assert
+    expect(character.equippedWeapon).toEqual(sword);
+  });
+
+  it("character can attack with sword", () => {
+    // Arrange 
+    const character = new Character({level: 6});
+    const anotherCharacter = new Character();
+    const sword = new Sword();
+    character.equipWeapon(sword);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(737.5);
+  });
+
 });

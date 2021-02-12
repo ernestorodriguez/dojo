@@ -1,3 +1,5 @@
+import BareHands from './BareHands';
+
 const MAX_HEALTH = 1000;
 const DAMAGE_WEIGHT = 50;
 const HEAL_AMOUNT = 50;
@@ -6,6 +8,7 @@ class Character {
     this.level = level;
     this.alive = true;
     this.health = MAX_HEALTH;
+    this.equippedWeapon = new BareHands();
   }
   
   sufferDamage (weight) {
@@ -30,8 +33,10 @@ class Character {
     if (otherCharacter === this) {
       return;
     }
-    let multy = 1;
 
+    let multy = 1;
+    let damageToApply = this.equippedWeapon.getDamageWeight();
+  
     if (otherCharacter.level - this.level >= 5) {
       multy *= 0.5;
     }
@@ -39,13 +44,17 @@ class Character {
       multy *= 1.5;
     }
     
-    otherCharacter.sufferDamage(DAMAGE_WEIGHT * multy);
+    otherCharacter.sufferDamage(damageToApply * multy);
   }
 
   heal (thisCharacter) {
     if (thisCharacter === this) {
       thisCharacter.beHealed(HEAL_AMOUNT);
     }
+  }
+
+  equipWeapon (weapon) {
+    this.equippedWeapon = weapon;
   }
 }
 
