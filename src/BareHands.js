@@ -2,7 +2,7 @@ class BareHands {
     constructor (weight = 50) {
         this.weight = weight;
     }
-    getDamageWeight(baseDamage) {
+    getDamageWeight() {
         return this.weight;
    }
 }

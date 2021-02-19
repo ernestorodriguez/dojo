@@ -1,5 +1,5 @@
 class Sword {
-  constructor(weight = 175) {
+  constructor(weight = 100) {
     this.weight = weight;
   }
   getDamageWeight() {

@@ -164,7 +164,7 @@ describe('', () => {
     character.damage(anotherCharacter);
 
     // Assert
-    expect(anotherCharacter.health).toEqual(737.5);
+    expect(anotherCharacter.health).toEqual(850);
   });
 
 });
