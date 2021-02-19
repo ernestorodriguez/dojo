@@ -30,3 +30,11 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 A character can equip a sword and attack with it.
  - the damage amount should be based on the weapon damage but add any other current modification
+
+A character can equip a shield 
+- the damage amount applied should subtract the percentage of shield  protection
+
+A sword or shield can have an Elemental modifier.
+- a character using a fire Sword against a  fire shield has reduced damage 50%
+- a character using a fire Sword against an ice shield has 150% increased damage
+- a character using a fire Sword against a standard shield have 200% increased

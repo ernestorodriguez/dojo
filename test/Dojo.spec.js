@@ -1,6 +1,7 @@
 import Dojo from '../src/Dojo';
 import Character from '../src/Character';
 import Sword from '../src/Sword';
+import Shield from '../src/Shield';
 
 describe('', () => {
   it('should be true', ()=> {
@@ -153,6 +154,7 @@ describe('', () => {
     expect(character.equippedWeapon).toEqual(sword);
   });
 
+
   it("character can attack with sword", () => {
     // Arrange 
     const character = new Character({level: 6});
@@ -165,6 +167,20 @@ describe('', () => {
 
     // Assert
     expect(anotherCharacter.health).toEqual(850);
+  });
+
+  it("a character can equip a shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const shield = new Shield();
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(975);
   });
 
 });

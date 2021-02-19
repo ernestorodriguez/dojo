@@ -1,4 +1,5 @@
 import BareHands from './BareHands';
+import Shield from './Shield';
 
 const MAX_HEALTH = 1000;
 const DAMAGE_WEIGHT = 50;
@@ -9,10 +10,13 @@ class Character {
     this.alive = true;
     this.health = MAX_HEALTH;
     this.equippedWeapon = new BareHands();
+    this.shield = new Shield(1);
   }
   
   sufferDamage (weight) {
-    this.health -= weight;
+
+    this.health -= weight * this.shield.getProtectionRatio();
+
     if (this.health <= 0) {
       this.alive = false;
       this.health = 0;
@@ -55,6 +59,10 @@ class Character {
 
   equipWeapon (weapon) {
     this.equippedWeapon = weapon;
+  }
+
+  equipShield (shield) {
+    this.shield = shield;
   }
 }
 
