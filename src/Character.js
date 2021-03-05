@@ -10,12 +10,12 @@ class Character {
     this.alive = true;
     this.health = MAX_HEALTH;
     this.equippedWeapon = new BareHands();
-    this.shield = new Shield(1);
+    this.shield = new Shield({ protectionRatio: 1 });
   }
   
   sufferDamage (weight, element) {
 
-    this.health -= weight * this.shield.getProtectionRatio(element) // fire;
+    this.health -= weight * this.shield.getProtectionRatio(element);
 
     if (this.health <= 0) {
       this.alive = false;

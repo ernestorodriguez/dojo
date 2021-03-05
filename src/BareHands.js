@@ -1,6 +1,9 @@
+import Neutral from './Neutral';
+
 class BareHands {
-    constructor (weight = 50) {
+    constructor ({ element = new Neutral(), weight = 50} = {}) {
         this.weight = weight;
+        this.element = element;
     }
     getDamageWeight() {
         return this.weight;

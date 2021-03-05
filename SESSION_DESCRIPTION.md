@@ -38,4 +38,10 @@ A character can equip a shield
 A sword or shield can have an Elemental modifier.
 - a character using a fire Sword against a  fire shield has reduced damage 50%
 - a character using a fire Sword against an ice shield has 150% increased damage
-- a character using a fire Sword against a standard shield have 200% increased
+- a character using a fire Sword against a standard shield have 200% increased damage
+
+- a character using a Ice Sword against a  Ice shield has reduced damage 50%
+- a character using a Ice Sword against an fire shield has 50% reduce damage
+- a character using a Ice Sword against a standard shield have 200% increased damage
+
+

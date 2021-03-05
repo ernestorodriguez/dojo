@@ -1,18 +1,10 @@
 class Fire {
   constructor() {
-    this.fire_protection = 0.25;
+    this.fire_protection = 0.5;
   }
   get_element_mult(element){
-      if (element instanceof Fire ) {
-        return this.fire_protection;
-      }
-      return 0;
+    return this.fire_protection;
   }
-
-// if getVersusElement() == 'fire'{
-// protection = 0.5
-// }
-
 }
 
 export default Fire;

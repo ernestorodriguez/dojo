@@ -3,6 +3,8 @@ import Character from '../src/Character';
 import Sword from '../src/Sword';
 import Shield from '../src/Shield';
 import Fire from '../src/Fire';
+import Ice from '../src/Ice';
+import Neutral from '../src/Neutral';
 
 describe('', () => {
   it('should be true', ()=> {
@@ -202,4 +204,102 @@ describe('', () => {
     expect(anotherCharacter.health).toEqual(975);
   });
 
+  it("character attacking with a fire sword will do 150% damage to ice shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const ice = new Ice();
+    const fire = new Fire();
+
+    const sword = new Sword({element: fire});
+    const shield = new Shield({element: ice});
+
+    character.equipWeapon(sword);
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(925);
+  });
+
+  it("character attacking with a fire sword will do 200% damage to standard shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const neutral = new Neutral();
+    const fire = new Fire();
+
+    const sword = new Sword({element: fire});
+    const shield = new Shield({element: neutral});
+
+    character.equipWeapon(sword);
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(900);
+  });
+
+
+  it("character attacking with a ice sword will do 50% less damage to ice shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const ice = new Ice();
+    const sword = new Sword({element: ice});
+    const shield = new Shield({element: ice});
+
+    character.equipWeapon(sword);
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(975);
+  });
+
+  it("character attacking with a ice sword will do 50% less damage to fire shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const ice = new Ice();
+    const fire = new Fire();
+    const sword = new Sword({element: ice});
+    const shield = new Shield({element: fire});
+
+    character.equipWeapon(sword);
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(975);
+  });
+
+  it("character attacking with a ice sword will do 200% damage to standard shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const ice = new Ice();
+    const neutral = new Neutral();
+    const sword = new Sword({element: ice});
+    const shield = new Shield({element: neutral});
+
+    character.equipWeapon(sword);
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(900);
+  });
+
 });
+
