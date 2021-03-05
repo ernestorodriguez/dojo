@@ -1,5 +1,8 @@
+import Neutral from './Neutral';
+
 class Sword {
-  constructor(weight = 100) {
+  constructor({ element = new Neutral(), weight = 100} = {}) {
+    this.element = element;
     this.weight = weight;
   }
   getDamageWeight() {

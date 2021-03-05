@@ -2,6 +2,7 @@ import Dojo from '../src/Dojo';
 import Character from '../src/Character';
 import Sword from '../src/Sword';
 import Shield from '../src/Shield';
+import Fire from '../src/Fire';
 
 describe('', () => {
   it('should be true', ()=> {
@@ -174,6 +175,24 @@ describe('', () => {
     const character = new Character();
     const anotherCharacter = new Character();
     const shield = new Shield();
+    anotherCharacter.equipShield(shield);
+
+    // Act
+    character.damage(anotherCharacter);
+
+    // Assert
+    expect(anotherCharacter.health).toEqual(975);
+  });
+
+  it("character attacking with a fire sword will do less damage to fire shield", () => {
+    // Arrange 
+    const character = new Character();
+    const anotherCharacter = new Character();
+    const fire = new Fire();
+    const sword = new Sword({element: fire});
+    const shield = new Shield({element: fire});
+
+    character.equipWeapon(sword);
     anotherCharacter.equipShield(shield);
 
     // Act

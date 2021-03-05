@@ -13,9 +13,9 @@ class Character {
     this.shield = new Shield(1);
   }
   
-  sufferDamage (weight) {
+  sufferDamage (weight, element) {
 
-    this.health -= weight * this.shield.getProtectionRatio();
+    this.health -= weight * this.shield.getProtectionRatio(element) // fire;
 
     if (this.health <= 0) {
       this.alive = false;
@@ -39,7 +39,7 @@ class Character {
     }
 
     let multy = 1;
-    let damageToApply = this.equippedWeapon.getDamageWeight();
+    let damageToApply = this.equippedWeapon.getDamageWeight() //fire;
   
     if (otherCharacter.level - this.level >= 5) {
       multy *= 0.5;
@@ -48,7 +48,7 @@ class Character {
       multy *= 1.5;
     }
     
-    otherCharacter.sufferDamage(damageToApply * multy);
+    otherCharacter.sufferDamage(damageToApply * multy, this.equippedWeapon.element);
   }
 
   heal (thisCharacter) {
